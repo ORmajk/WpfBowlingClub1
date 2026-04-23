@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfBowlingClub.AppData.Pages
+namespace WpfBowlingClub.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Registration.xaml
+    /// Логика взаимодействия для Authorization.xaml
     /// </summary>
-    public partial class Registration : Page
+    public partial class Authorization : Page
     {
-        public Registration()
+        public Authorization()
         {
             InitializeComponent();
         }
