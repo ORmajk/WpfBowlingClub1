@@ -1,0 +1,44 @@
+﻿<Window x:Class="WpfBowlingClub.Pages.LoginPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Вход в систему" Height="400" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid Background="#2C3E50">
+        <StackPanel Width="300" VerticalAlignment="Center">
+            <TextBlock Text="БОУЛИНГ КЛУБ" 
+                       FontSize="24" FontWeight="Bold" 
+                       Foreground="White" 
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,30"/>
+
+            <TextBlock Text="Логин (Email или телефон)" 
+                       Foreground="White" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtLogin" 
+                     Height="35" Margin="0,0,0,15"
+                     Background="White" FontSize="14"
+                     Padding="10"/>
+
+            <TextBlock Text="Пароль" 
+                       Foreground="White" Margin="0,0,0,5"/>
+            <PasswordBox x:Name="txtPassword" 
+                         Height="35" Margin="0,0,0,20"
+                         Background="White" FontSize="14"
+                         Padding="10"/>
+
+            <Button x:Name="btnLogin" 
+                    Content="ВОЙТИ" 
+                    Height="40" FontSize="16" FontWeight="Bold"
+                    Background="#27AE60" Foreground="White"
+                    Click="BtnLogin_Click"
+                    Cursor="Hand"/>
+
+            <TextBlock x:Name="txtError" 
+                       Foreground="#E74C3C" 
+                       HorizontalAlignment="Center"
+                       Margin="0,10,0,0"
+                       Visibility="Collapsed"/>
+        </StackPanel>
+    </Grid>
+</Window>
