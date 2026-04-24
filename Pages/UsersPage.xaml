@@ -17,7 +17,9 @@
                 <DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" Width="120"/>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="120"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="180"/>
-                <DataGridTextColumn Header="Роль" Binding="{Binding Role.Name}" Width="100"/>
+                <DataGridTextColumn Header="Роль" 
+                                    Binding="{Binding Role.Name}" 
+                                    Width="100"/>
                 <DataGridTemplateColumn Header="Статус" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

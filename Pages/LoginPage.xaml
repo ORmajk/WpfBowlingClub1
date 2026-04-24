@@ -16,15 +16,15 @@
             <TextBlock Text="Логин (Email или телефон)" 
                        Foreground="White" Margin="0,0,0,5"/>
             <TextBox x:Name="txtLogin" 
-                     Height="35" Margin="0,0,0,15"
-                     Background="White" FontSize="14"
+                     Height="38" Margin="0,0,0,15"
+                     Background="White"
                      Padding="10"/>
 
             <TextBlock Text="Пароль" 
                        Foreground="White" Margin="0,0,0,5"/>
             <PasswordBox x:Name="txtPassword" 
-                         Height="35" Margin="0,0,0,20"
-                         Background="White" FontSize="14"
+                         Height="38" Margin="0,0,0,20"
+                         Background="White"
                          Padding="10"/>
 
             <Button x:Name="btnLogin" 

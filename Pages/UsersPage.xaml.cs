@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using WpfBowlingClub.Classes;
@@ -20,8 +22,31 @@ namespace WpfBowlingClub.Pages
 
         private void LoadUsers()
         {
-            users = db.GetUsers();
-            dgUsers.ItemsSource = users;
+            try
+            {
+                // Загружаем пользователей с ролью
+                users = db.GetUsers();  // Убедитесь что в GetUsers есть Include
+
+                // Для отладки - проверим что Role не null
+                foreach (var user in users)
+                {
+                    if (user.Roles == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"User {user.LastName} has null Role");
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine($"User {user.LastName} Role: {user.Roles.Name}");
+                    }
+                }
+
+                dgUsers.ItemsSource = users;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки: {ex.Message}", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void UserStatusChanged(object sender, SelectionChangedEventArgs e)

@@ -145,18 +145,6 @@ namespace WpfBowlingClub.Classes
         }
 
         // === ПОЛЬЗОВАТЕЛИ ===
-        public Users Login(string login, string password)
-        {
-            return db.Users.FirstOrDefault(u =>
-                (u.Email == login || u.Phone == login)
-                && u.Password == password
-                && u.Status == 1);
-        }
-
-        public List<Users> GetUsers()
-        {
-            return db.Users.Include(u => u.Roles).ToList();
-        }
 
         public void SetUserStatus(int userId, int status)
         {
@@ -166,6 +154,25 @@ namespace WpfBowlingClub.Classes
                 user.Status = status;
                 db.SaveChanges();
             }
+        }
+
+        public List<Users> GetUsers()
+        {
+            // ВАЖНО: используйте Include для загрузки связанных данных
+            return db.Users
+                .Include(u => u.Roles)  // Загружаем Role
+                .ToList();
+        }
+
+        public Users Login(string login, string password)
+        {
+            // Тоже добавляем Include для Role
+            return db.Users
+                .Include(u => u.Roles)  // ← Добавить
+                .FirstOrDefault(u =>
+                    (u.Email == login || u.Phone == login)
+                    && u.Password == password
+                    && u.Status == 1);
         }
 
         // === ИСТОРИЯ ЦЕН ===
