@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Bawling_clubdbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Bawling_clubdbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bookings">
           <Key>
             <PropertyRef Name="Id" />
@@ -83,6 +83,16 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="BaseSalary" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PriceHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="OldPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="NewPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ChangeDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductComments">
           <Key>
@@ -180,7 +190,7 @@
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Bookings__Client__05D8E0BE">
+        <Association Name="FK__Bookings__Client__5FB337D6">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,7 +202,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bookings__LaneId__06CD04F7">
+        <Association Name="FK__Bookings__LaneId__60A75C0F">
           <End Role="Lanes" Type="Self.Lanes" Multiplicity="1" />
           <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -204,7 +214,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employees__Posit__07C12930">
+        <Association Name="FK__Employees__Posit__619B8048">
           <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
@@ -216,7 +226,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employees__RoleI__08B54D69">
+        <Association Name="FK__Employees__RoleI__628FA481">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
@@ -228,7 +238,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderItem__Order__09A971A2">
+        <Association Name="FK__OrderItem__Order__6383C8BA">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
           <ReferentialConstraint>
@@ -240,7 +250,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderItem__Produ__0A9D95DB">
+        <Association Name="FK__OrderItem__Produ__6477ECF3">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
           <ReferentialConstraint>
@@ -252,7 +262,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__ClientId__0B91BA14">
+        <Association Name="FK__Orders__ClientId__656C112C">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -264,7 +274,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductCo__Produ__0C85DE4D">
+        <Association Name="FK__ProductCo__Produ__66603565">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="ProductComments" Type="Self.ProductComments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -276,7 +286,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductCo__UserI__0D7A0286">
+        <Association Name="FK__ProductCo__UserI__6754599E">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="ProductComments" Type="Self.ProductComments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -288,7 +298,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__Manufa__0E6E26BF">
+        <Association Name="FK__Products__Manufa__68487DD7">
           <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -300,7 +310,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__Suppli__0F624AF8">
+        <Association Name="FK__Products__Suppli__693CA210">
           <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -312,7 +322,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductTa__Produ__10566F31">
+        <Association Name="FK__ProductTa__Produ__6A30C649">
           <End Role="Products" Type="Self.Products" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -326,7 +336,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductTa__TagId__114A936A">
+        <Association Name="FK__ProductTa__TagId__6B24EA82">
           <End Role="ProductTags" Type="Self.ProductTags" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -340,7 +350,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Order__123EB7A3">
+        <Association Name="FK__Transacti__Order__6C190EBB">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -352,7 +362,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Users__RoleId__1332DBDC">
+        <Association Name="FK__Users__RoleId__6D0D32F4">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -364,7 +374,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkShift__Emplo__14270015">
+        <Association Name="FK__WorkShift__Emplo__6E01572D">
           <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="WorkShifts" Type="Self.WorkShifts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -376,6 +386,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PriceHistory_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PriceHistory" Type="Self.PriceHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PriceHistory">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище Bawling_clubdbModelContainer">
           <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
@@ -384,6 +408,7 @@
           <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceHistory" EntityType="Self.PriceHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductComments" EntityType="Self.ProductComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTagMapping" EntityType="Self.ProductTagMapping" Schema="dbo" store:Type="Tables" />
@@ -393,73 +418,76 @@
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkShifts" EntityType="Self.WorkShifts" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Bookings__Client__05D8E0BE" Association="Self.FK__Bookings__Client__05D8E0BE">
+          <AssociationSet Name="FK__Bookings__Client__5FB337D6" Association="Self.FK__Bookings__Client__5FB337D6">
             <End Role="Users" EntitySet="Users" />
             <End Role="Bookings" EntitySet="Bookings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bookings__LaneId__06CD04F7" Association="Self.FK__Bookings__LaneId__06CD04F7">
+          <AssociationSet Name="FK__Bookings__LaneId__60A75C0F" Association="Self.FK__Bookings__LaneId__60A75C0F">
             <End Role="Lanes" EntitySet="Lanes" />
             <End Role="Bookings" EntitySet="Bookings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employees__Posit__07C12930" Association="Self.FK__Employees__Posit__07C12930">
+          <AssociationSet Name="FK__Employees__Posit__619B8048" Association="Self.FK__Employees__Posit__619B8048">
             <End Role="Positions" EntitySet="Positions" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employees__RoleI__08B54D69" Association="Self.FK__Employees__RoleI__08B54D69">
+          <AssociationSet Name="FK__Employees__RoleI__628FA481" Association="Self.FK__Employees__RoleI__628FA481">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderItem__Order__09A971A2" Association="Self.FK__OrderItem__Order__09A971A2">
+          <AssociationSet Name="FK__OrderItem__Order__6383C8BA" Association="Self.FK__OrderItem__Order__6383C8BA">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderItems" EntitySet="OrderItems" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderItem__Produ__0A9D95DB" Association="Self.FK__OrderItem__Produ__0A9D95DB">
+          <AssociationSet Name="FK__OrderItem__Produ__6477ECF3" Association="Self.FK__OrderItem__Produ__6477ECF3">
             <End Role="Products" EntitySet="Products" />
             <End Role="OrderItems" EntitySet="OrderItems" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__ClientId__0B91BA14" Association="Self.FK__Orders__ClientId__0B91BA14">
+          <AssociationSet Name="FK__Orders__ClientId__656C112C" Association="Self.FK__Orders__ClientId__656C112C">
             <End Role="Users" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductCo__Produ__0C85DE4D" Association="Self.FK__ProductCo__Produ__0C85DE4D">
+          <AssociationSet Name="FK__ProductCo__Produ__66603565" Association="Self.FK__ProductCo__Produ__66603565">
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductComments" EntitySet="ProductComments" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductCo__UserI__0D7A0286" Association="Self.FK__ProductCo__UserI__0D7A0286">
+          <AssociationSet Name="FK__ProductCo__UserI__6754599E" Association="Self.FK__ProductCo__UserI__6754599E">
             <End Role="Users" EntitySet="Users" />
             <End Role="ProductComments" EntitySet="ProductComments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__Manufa__0E6E26BF" Association="Self.FK__Products__Manufa__0E6E26BF">
+          <AssociationSet Name="FK__Products__Manufa__68487DD7" Association="Self.FK__Products__Manufa__68487DD7">
             <End Role="Manufacturers" EntitySet="Manufacturers" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__Suppli__0F624AF8" Association="Self.FK__Products__Suppli__0F624AF8">
+          <AssociationSet Name="FK__Products__Suppli__693CA210" Association="Self.FK__Products__Suppli__693CA210">
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductTa__Produ__10566F31" Association="Self.FK__ProductTa__Produ__10566F31">
+          <AssociationSet Name="FK__ProductTa__Produ__6A30C649" Association="Self.FK__ProductTa__Produ__6A30C649">
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductTagMapping" EntitySet="ProductTagMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductTa__TagId__114A936A" Association="Self.FK__ProductTa__TagId__114A936A">
+          <AssociationSet Name="FK__ProductTa__TagId__6B24EA82" Association="Self.FK__ProductTa__TagId__6B24EA82">
             <End Role="ProductTags" EntitySet="ProductTags" />
             <End Role="ProductTagMapping" EntitySet="ProductTagMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Order__123EB7A3" Association="Self.FK__Transacti__Order__123EB7A3">
+          <AssociationSet Name="FK__Transacti__Order__6C190EBB" Association="Self.FK__Transacti__Order__6C190EBB">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Users__RoleId__1332DBDC" Association="Self.FK__Users__RoleId__1332DBDC">
+          <AssociationSet Name="FK__Users__RoleId__6D0D32F4" Association="Self.FK__Users__RoleId__6D0D32F4">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK__WorkShift__Emplo__14270015" Association="Self.FK__WorkShift__Emplo__14270015">
+          <AssociationSet Name="FK__WorkShift__Emplo__6E01572D" Association="Self.FK__WorkShift__Emplo__6E01572D">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="WorkShifts" EntitySet="WorkShifts" />
           </AssociationSet>
+          <AssociationSet Name="FK_PriceHistory_Products" Association="Self.FK_PriceHistory_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="PriceHistory" EntitySet="PriceHistory" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Bawling_clubdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -476,8 +504,8 @@
           <Property Name="PlayersCount" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Bookings__Client__05D8E0BE" FromRole="Bookings" ToRole="Users" />
-          <NavigationProperty Name="Lanes" Relationship="Self.FK__Bookings__LaneId__06CD04F7" FromRole="Bookings" ToRole="Lanes" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Bookings__Client__5FB337D6" FromRole="Bookings" ToRole="Users" />
+          <NavigationProperty Name="Lanes" Relationship="Self.FK__Bookings__LaneId__60A75C0F" FromRole="Bookings" ToRole="Lanes" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -493,9 +521,9 @@
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Positions" Relationship="Self.FK__Employees__Posit__07C12930" FromRole="Employees" ToRole="Positions" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Employees__RoleI__08B54D69" FromRole="Employees" ToRole="Roles" />
-          <NavigationProperty Name="WorkShifts" Relationship="Self.FK__WorkShift__Emplo__14270015" FromRole="Employees" ToRole="WorkShifts" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK__Employees__Posit__619B8048" FromRole="Employees" ToRole="Positions" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Employees__RoleI__628FA481" FromRole="Employees" ToRole="Roles" />
+          <NavigationProperty Name="WorkShifts" Relationship="Self.FK__WorkShift__Emplo__6E01572D" FromRole="Employees" ToRole="WorkShifts" />
         </EntityType>
         <EntityType Name="Lanes">
           <Key>
@@ -506,7 +534,7 @@
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="Capacity" Type="Int32" Nullable="false" />
           <Property Name="HourlyRate" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__LaneId__06CD04F7" FromRole="Lanes" ToRole="Bookings" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__LaneId__60A75C0F" FromRole="Lanes" ToRole="Bookings" />
         </EntityType>
         <EntityType Name="Manufacturers">
           <Key>
@@ -515,7 +543,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Products__Manufa__0E6E26BF" FromRole="Manufacturers" ToRole="Products" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__Manufa__68487DD7" FromRole="Manufacturers" ToRole="Products" />
         </EntityType>
         <EntityType Name="OrderItems">
           <Key>
@@ -526,8 +554,8 @@
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderItem__Order__09A971A2" FromRole="OrderItems" ToRole="Orders" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__OrderItem__Produ__0A9D95DB" FromRole="OrderItems" ToRole="Products" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderItem__Order__6383C8BA" FromRole="OrderItems" ToRole="Orders" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__OrderItem__Produ__6477ECF3" FromRole="OrderItems" ToRole="Products" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -542,9 +570,9 @@
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CompletedAt" Type="DateTime" Precision="3" />
           <Property Name="TotalAmount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="OrderItems" Relationship="Self.FK__OrderItem__Order__09A971A2" FromRole="Orders" ToRole="OrderItems" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Orders__ClientId__0B91BA14" FromRole="Orders" ToRole="Users" />
-          <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__Order__123EB7A3" FromRole="Orders" ToRole="Transactions" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK__OrderItem__Order__6383C8BA" FromRole="Orders" ToRole="OrderItems" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Orders__ClientId__656C112C" FromRole="Orders" ToRole="Users" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__Order__6C190EBB" FromRole="Orders" ToRole="Transactions" />
         </EntityType>
         <EntityType Name="Positions">
           <Key>
@@ -553,7 +581,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BaseSalary" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Posit__07C12930" FromRole="Positions" ToRole="Employees" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Posit__619B8048" FromRole="Positions" ToRole="Employees" />
         </EntityType>
         <EntityType Name="ProductComments">
           <Key>
@@ -564,8 +592,8 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="CommentText" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__ProductCo__Produ__0C85DE4D" FromRole="ProductComments" ToRole="Products" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__ProductCo__UserI__0D7A0286" FromRole="ProductComments" ToRole="Users" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__ProductCo__Produ__66603565" FromRole="ProductComments" ToRole="Products" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__ProductCo__UserI__6754599E" FromRole="ProductComments" ToRole="Users" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -586,11 +614,12 @@
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SupplierId" Type="Int32" />
           <Property Name="ManufacturerId" Type="Int32" />
-          <NavigationProperty Name="Manufacturers" Relationship="Self.FK__Products__Manufa__0E6E26BF" FromRole="Products" ToRole="Manufacturers" />
-          <NavigationProperty Name="OrderItems" Relationship="Self.FK__OrderItem__Produ__0A9D95DB" FromRole="Products" ToRole="OrderItems" />
-          <NavigationProperty Name="ProductComments" Relationship="Self.FK__ProductCo__Produ__0C85DE4D" FromRole="Products" ToRole="ProductComments" />
-          <NavigationProperty Name="Suppliers" Relationship="Self.FK__Products__Suppli__0F624AF8" FromRole="Products" ToRole="Suppliers" />
+          <NavigationProperty Name="Manufacturers" Relationship="Self.FK__Products__Manufa__68487DD7" FromRole="Products" ToRole="Manufacturers" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK__OrderItem__Produ__6477ECF3" FromRole="Products" ToRole="OrderItems" />
+          <NavigationProperty Name="ProductComments" Relationship="Self.FK__ProductCo__Produ__66603565" FromRole="Products" ToRole="ProductComments" />
+          <NavigationProperty Name="Suppliers" Relationship="Self.FK__Products__Suppli__693CA210" FromRole="Products" ToRole="Suppliers" />
           <NavigationProperty Name="ProductTags" Relationship="Self.ProductTagMapping" FromRole="Products" ToRole="ProductTags" />
+          <NavigationProperty Name="PriceHistory" Relationship="Bawling_clubdbModel.FK_PriceHistory_Products" FromRole="Products" ToRole="PriceHistory" />
         </EntityType>
         <EntityType Name="ProductTags">
           <Key>
@@ -606,8 +635,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__RoleI__08B54D69" FromRole="Roles" ToRole="Employees" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleId__1332DBDC" FromRole="Roles" ToRole="Users" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__RoleI__628FA481" FromRole="Roles" ToRole="Employees" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleId__6D0D32F4" FromRole="Roles" ToRole="Users" />
         </EntityType>
         <EntityType Name="Suppliers">
           <Key>
@@ -616,7 +645,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Products__Suppli__0F624AF8" FromRole="Suppliers" ToRole="Products" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__Suppli__693CA210" FromRole="Suppliers" ToRole="Products" />
         </EntityType>
         <EntityType Name="Transactions">
           <Key>
@@ -628,7 +657,7 @@
           <Property Name="PaymentMethod" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Transacti__Order__123EB7A3" FromRole="Transactions" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Transacti__Order__6C190EBB" FromRole="Transactions" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -645,10 +674,10 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="Discount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__Client__05D8E0BE" FromRole="Users" ToRole="Bookings" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__ClientId__0B91BA14" FromRole="Users" ToRole="Orders" />
-          <NavigationProperty Name="ProductComments" Relationship="Self.FK__ProductCo__UserI__0D7A0286" FromRole="Users" ToRole="ProductComments" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleId__1332DBDC" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK__Bookings__Client__5FB337D6" FromRole="Users" ToRole="Bookings" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__ClientId__656C112C" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="ProductComments" Relationship="Self.FK__ProductCo__UserI__6754599E" FromRole="Users" ToRole="ProductComments" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Users__RoleId__6D0D32F4" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <EntityType Name="WorkShifts">
           <Key>
@@ -658,9 +687,9 @@
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK__WorkShift__Emplo__14270015" FromRole="WorkShifts" ToRole="Employees" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__WorkShift__Emplo__6E01572D" FromRole="WorkShifts" ToRole="Employees" />
         </EntityType>
-        <Association Name="FK__Bookings__Client__05D8E0BE">
+        <Association Name="FK__Bookings__Client__5FB337D6">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -672,7 +701,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bookings__LaneId__06CD04F7">
+        <Association Name="FK__Bookings__LaneId__60A75C0F">
           <End Role="Lanes" Type="Self.Lanes" Multiplicity="1" />
           <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -684,7 +713,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employees__Posit__07C12930">
+        <Association Name="FK__Employees__Posit__619B8048">
           <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
@@ -696,7 +725,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employees__RoleI__08B54D69">
+        <Association Name="FK__Employees__RoleI__628FA481">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
@@ -708,7 +737,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WorkShift__Emplo__14270015">
+        <Association Name="FK__WorkShift__Emplo__6E01572D">
           <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="WorkShifts" Type="Self.WorkShifts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -720,7 +749,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__Manufa__0E6E26BF">
+        <Association Name="FK__Products__Manufa__68487DD7">
           <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -732,7 +761,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderItem__Order__09A971A2">
+        <Association Name="FK__OrderItem__Order__6383C8BA">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
           <ReferentialConstraint>
@@ -744,7 +773,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderItem__Produ__0A9D95DB">
+        <Association Name="FK__OrderItem__Produ__6477ECF3">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
           <ReferentialConstraint>
@@ -756,7 +785,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__ClientId__0B91BA14">
+        <Association Name="FK__Orders__ClientId__656C112C">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -768,7 +797,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Order__123EB7A3">
+        <Association Name="FK__Transacti__Order__6C190EBB">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -780,7 +809,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductCo__Produ__0C85DE4D">
+        <Association Name="FK__ProductCo__Produ__66603565">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="ProductComments" Type="Self.ProductComments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -792,7 +821,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductCo__UserI__0D7A0286">
+        <Association Name="FK__ProductCo__UserI__6754599E">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="ProductComments" Type="Self.ProductComments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -804,7 +833,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Products__Suppli__0F624AF8">
+        <Association Name="FK__Products__Suppli__693CA210">
           <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <ReferentialConstraint>
@@ -816,7 +845,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Users__RoleId__1332DBDC">
+        <Association Name="FK__Users__RoleId__6D0D32F4">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -832,7 +861,7 @@
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
           <End Role="ProductTags" Type="Self.ProductTags" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="Bawling_clubdbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Bawling_clubdbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bookings" EntityType="Self.Bookings" />
           <EntitySet Name="Employees" EntityType="Self.Employees" />
           <EntitySet Name="Lanes" EntityType="Self.Lanes" />
@@ -848,59 +877,59 @@
           <EntitySet Name="Transactions" EntityType="Self.Transactions" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="WorkShifts" EntityType="Self.WorkShifts" />
-          <AssociationSet Name="FK__Bookings__Client__05D8E0BE" Association="Self.FK__Bookings__Client__05D8E0BE">
+          <AssociationSet Name="FK__Bookings__Client__5FB337D6" Association="Self.FK__Bookings__Client__5FB337D6">
             <End Role="Users" EntitySet="Users" />
             <End Role="Bookings" EntitySet="Bookings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bookings__LaneId__06CD04F7" Association="Self.FK__Bookings__LaneId__06CD04F7">
+          <AssociationSet Name="FK__Bookings__LaneId__60A75C0F" Association="Self.FK__Bookings__LaneId__60A75C0F">
             <End Role="Lanes" EntitySet="Lanes" />
             <End Role="Bookings" EntitySet="Bookings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employees__Posit__07C12930" Association="Self.FK__Employees__Posit__07C12930">
+          <AssociationSet Name="FK__Employees__Posit__619B8048" Association="Self.FK__Employees__Posit__619B8048">
             <End Role="Positions" EntitySet="Positions" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employees__RoleI__08B54D69" Association="Self.FK__Employees__RoleI__08B54D69">
+          <AssociationSet Name="FK__Employees__RoleI__628FA481" Association="Self.FK__Employees__RoleI__628FA481">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK__WorkShift__Emplo__14270015" Association="Self.FK__WorkShift__Emplo__14270015">
+          <AssociationSet Name="FK__WorkShift__Emplo__6E01572D" Association="Self.FK__WorkShift__Emplo__6E01572D">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="WorkShifts" EntitySet="WorkShifts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__Manufa__0E6E26BF" Association="Self.FK__Products__Manufa__0E6E26BF">
+          <AssociationSet Name="FK__Products__Manufa__68487DD7" Association="Self.FK__Products__Manufa__68487DD7">
             <End Role="Manufacturers" EntitySet="Manufacturers" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderItem__Order__09A971A2" Association="Self.FK__OrderItem__Order__09A971A2">
+          <AssociationSet Name="FK__OrderItem__Order__6383C8BA" Association="Self.FK__OrderItem__Order__6383C8BA">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderItems" EntitySet="OrderItems" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderItem__Produ__0A9D95DB" Association="Self.FK__OrderItem__Produ__0A9D95DB">
+          <AssociationSet Name="FK__OrderItem__Produ__6477ECF3" Association="Self.FK__OrderItem__Produ__6477ECF3">
             <End Role="Products" EntitySet="Products" />
             <End Role="OrderItems" EntitySet="OrderItems" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__ClientId__0B91BA14" Association="Self.FK__Orders__ClientId__0B91BA14">
+          <AssociationSet Name="FK__Orders__ClientId__656C112C" Association="Self.FK__Orders__ClientId__656C112C">
             <End Role="Users" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Order__123EB7A3" Association="Self.FK__Transacti__Order__123EB7A3">
+          <AssociationSet Name="FK__Transacti__Order__6C190EBB" Association="Self.FK__Transacti__Order__6C190EBB">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductCo__Produ__0C85DE4D" Association="Self.FK__ProductCo__Produ__0C85DE4D">
+          <AssociationSet Name="FK__ProductCo__Produ__66603565" Association="Self.FK__ProductCo__Produ__66603565">
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductComments" EntitySet="ProductComments" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductCo__UserI__0D7A0286" Association="Self.FK__ProductCo__UserI__0D7A0286">
+          <AssociationSet Name="FK__ProductCo__UserI__6754599E" Association="Self.FK__ProductCo__UserI__6754599E">
             <End Role="Users" EntitySet="Users" />
             <End Role="ProductComments" EntitySet="ProductComments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Products__Suppli__0F624AF8" Association="Self.FK__Products__Suppli__0F624AF8">
+          <AssociationSet Name="FK__Products__Suppli__693CA210" Association="Self.FK__Products__Suppli__693CA210">
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__Users__RoleId__1332DBDC" Association="Self.FK__Users__RoleId__1332DBDC">
+          <AssociationSet Name="FK__Users__RoleId__6D0D32F4" Association="Self.FK__Users__RoleId__6D0D32F4">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
@@ -908,13 +937,43 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductTags" EntitySet="ProductTags" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="PriceHistory" EntityType="Bawling_clubdbModel.PriceHistory" />
+          <AssociationSet Name="FK_PriceHistory_Products" Association="Bawling_clubdbModel.FK_PriceHistory_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="PriceHistory" EntitySet="PriceHistory" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="PriceHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="OldPrice" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="NewPrice" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="Bawling_clubdbModel.FK_PriceHistory_Products" FromRole="PriceHistory" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_PriceHistory_Products">
+          <End Type="Bawling_clubdbModel.Products" Role="Products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Bawling_clubdbModel.PriceHistory" Role="PriceHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PriceHistory">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище Bawling_clubdbModelContainer" CdmEntityContainer="Bawling_clubdbEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Bawling_clubdbModelContainer" CdmEntityContainer="Bawling_clubdbEntities1">
           <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="Bawling_clubdbModel.Bookings">
               <MappingFragment StoreEntitySet="Bookings">
@@ -1105,7 +1164,18 @@
               <ScalarProperty Name="Id" ColumnName="TagId" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="PriceHistory">
+            <EntityTypeMapping TypeName="IsTypeOf(Bawling_clubdbModel.PriceHistory)">
+              <MappingFragment StoreEntitySet="PriceHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="NewPrice" ColumnName="NewPrice" />
+                <ScalarProperty Name="OldPrice" ColumnName="OldPrice" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

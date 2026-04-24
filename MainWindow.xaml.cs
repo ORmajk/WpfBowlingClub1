@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfBowlingClub.Pages;
 
 namespace WpfBowlingClub
 {
@@ -23,9 +24,9 @@ namespace WpfBowlingClub
         public MainWindow()
         {
             InitializeComponent();
-            AppData.Pages.AppConnect.model = new AppData.Bawling_clubdbEntities();
+            AppData.Pages.AppConnect.model = new AppData.Bawling_clubdbEntities1();
             AppData.Pages.AppFrame.FrameMain = Frame1;
-            Frame1.Navigate(new AppData.Pages.Authorization());
+            Frame1.Navigate(new ManufacturersPage());
         }
     }
 }

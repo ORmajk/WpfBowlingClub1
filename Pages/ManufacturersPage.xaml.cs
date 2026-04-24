@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfBowlingClub.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Authorization.xaml
+    /// Логика взаимодействия для ManufacturersPage.xaml
     /// </summary>
-    public partial class Authorization : Page
+    public partial class ManufacturersPage : Page
     {
-        public Authorization()
+        public ManufacturersPage()
         {
             InitializeComponent();
         }

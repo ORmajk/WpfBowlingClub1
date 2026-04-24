@@ -20,6 +20,7 @@ namespace WpfBowlingClub.AppData
             this.OrderItems = new HashSet<OrderItems>();
             this.ProductComments = new HashSet<ProductComments>();
             this.ProductTags = new HashSet<ProductTags>();
+            this.PriceHistory = new HashSet<PriceHistory>();
         }
     
         public int Id { get; set; }
@@ -46,5 +47,7 @@ namespace WpfBowlingClub.AppData
         public virtual Suppliers Suppliers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductTags> ProductTags { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PriceHistory> PriceHistory { get; set; }
     }
 }

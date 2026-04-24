@@ -9,7 +9,7 @@ namespace WpfBowlingClub.AppData.Pages
 {
     internal class AppConnect
     {
-        public static Bawling_clubdbEntities model;
+        public static Bawling_clubdbEntities1 model;
         public static int usersID;
     }
 }

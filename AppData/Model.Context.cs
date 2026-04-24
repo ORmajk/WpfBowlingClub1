@@ -13,10 +13,10 @@ namespace WpfBowlingClub.AppData
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Bawling_clubdbEntities : DbContext
+    public partial class Bawling_clubdbEntities1 : DbContext
     {
-        public Bawling_clubdbEntities()
-            : base("name=Bawling_clubdbEntities")
+        public Bawling_clubdbEntities1()
+            : base("name=Bawling_clubdbEntities1")
         {
         }
     
@@ -40,5 +40,6 @@ namespace WpfBowlingClub.AppData
         public virtual DbSet<Transactions> Transactions { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<WorkShifts> WorkShifts { get; set; }
+        public virtual DbSet<PriceHistory> PriceHistory { get; set; }
     }
 }
