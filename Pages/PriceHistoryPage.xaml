@@ -1,0 +1,42 @@
+﻿<Window x:Class="WpfBowlingClub.Pages.PriceHistoryPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="История изменения цен" Height="400" Width="550"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="lblProductName" Grid.Row="0" 
+                   FontSize="14" FontWeight="Bold" 
+                   Margin="0,0,0,10"/>
+
+        <DataGrid x:Name="dgHistory" Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  Background="White"
+                  RowHeight="30"
+                  FontSize="13">
+            <DataGrid.Columns>
+                <!-- ИСПРАВЛЕНО: правильный синтаксис StringFormat -->
+                <DataGridTextColumn Header="Старая цена" 
+                                    Binding="{Binding OldPrice, StringFormat={}{0:N2} ₽}" 
+                                    Width="150"/>
+                <DataGridTextColumn Header="Новая цена" 
+                                    Binding="{Binding NewPrice, StringFormat={}{0:N2} ₽}" 
+                                    Width="150"/>
+                <DataGridTextColumn Header="Дата изменения" 
+                                    Binding="{Binding ChangeDate, StringFormat={}{0:dd.MM.yyyy HH:mm}}" 
+                                    Width="200"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Row="2" Content="Закрыть" Width="100" Height="30" Margin="0,15,0,0"
+                Background="#3498DB" Foreground="White"
+                Click="BtnClose_Click" Cursor="Hand"
+                HorizontalAlignment="Right"/>
+    </Grid>
+</Window>

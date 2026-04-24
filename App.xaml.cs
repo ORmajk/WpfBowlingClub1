@@ -13,5 +13,20 @@ namespace WpfBowlingClub
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            // Глобальная обработка ошибок
+            DispatcherUnhandledException += (s, args) =>
+            {
+                MessageBox.Show($"Произошла ошибка: {args.Exception.Message}\n\n" +
+                    "Пожалуйста, обратитесь к администратору.",
+                    "Критическая ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                args.Handled = true;
+            };
+        }
     }
 }

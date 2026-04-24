@@ -26,7 +26,7 @@ namespace WpfBowlingClub
             InitializeComponent();
             AppData.Pages.AppConnect.model = new AppData.Bawling_clubdbEntities1();
             AppData.Pages.AppFrame.FrameMain = Frame1;
-            Frame1.Navigate(new ManufacturersPage());
+            Frame1.Navigate(new Pages.LoginPage());
         }
     }
 }

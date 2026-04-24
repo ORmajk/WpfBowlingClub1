@@ -7,7 +7,7 @@ namespace WpfBowlingClub.Pages
     public partial class LoginPage : Window
     {
         private DatabaseHelper db;
-        public static Users CurrentUser { get; set; }
+        public static AppData.Users CurrentUser { get; set; }
 
         public LoginPage()
         {
@@ -36,7 +36,7 @@ namespace WpfBowlingClub.Pages
                     return;
                 }
 
-                if (user.Role.Name != "Администратор" && user.Role.Name != "Менеджер")
+                if (user.Roles.Name != "Администратор" && user.Roles.Name != "Менеджер")
                 {
                     ShowError("У вас нет доступа к этой программе");
                     return;

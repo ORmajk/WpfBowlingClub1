@@ -9,7 +9,7 @@ namespace WpfBowlingClub.Pages
         {
             InitializeComponent();
 
-            if (LoginPage.CurrentUser?.Role?.Name == "Администратор")
+            if (LoginPage.CurrentUser?.Roles?.Name == "Администратор")
             {
                 btnUsers.Visibility = Visibility.Visible;
             }

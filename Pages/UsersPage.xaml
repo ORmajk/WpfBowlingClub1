@@ -1,0 +1,36 @@
+﻿<Page x:Class="WpfBowlingClub.Pages.UsersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Пользователи" Background="#ECF0F1">
+
+    <Grid Margin="10">
+        <DataGrid x:Name="dgUsers" 
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  Background="White"
+                  RowHeight="35"
+                  FontSize="13">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="120"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="120"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" Width="120"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="120"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="180"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Role.Name}" Width="100"/>
+                <DataGridTemplateColumn Header="Статус" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedValue="{Binding Status}" Width="80" Height="25"
+                                      SelectionChanged="UserStatusChanged"
+                                      Tag="{Binding}">
+                                <ComboBoxItem Content="Активен" Tag="1"/>
+                                <ComboBoxItem Content="Заблокирован" Tag="0"/>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
