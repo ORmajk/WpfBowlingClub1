@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using WpfBowlingClub.AppData;
@@ -21,6 +22,7 @@ namespace WpfBowlingClub.Classes
             return db.Products
                 .Include(p => p.Suppliers)
                 .Include(p => p.Manufacturers)
+                .OrderByDescending(p => p.Id)
                 .ToList();
         }
 
@@ -156,19 +158,18 @@ namespace WpfBowlingClub.Classes
             }
         }
 
-        public List<Users> GetUsers()
+        public List<AppData.Users> GetUsers()
         {
-            // ВАЖНО: используйте Include для загрузки связанных данных
             return db.Users
-                .Include(u => u.Roles)  // Загружаем Role
+                .Include(u => u.Roles) 
+                .OrderBy(u => u.LastName)
                 .ToList();
         }
 
         public Users Login(string login, string password)
         {
-            // Тоже добавляем Include для Role
             return db.Users
-                .Include(u => u.Roles)  // ← Добавить
+                .Include(u => u.Roles)
                 .FirstOrDefault(u =>
                     (u.Email == login || u.Phone == login)
                     && u.Password == password
@@ -182,6 +183,64 @@ namespace WpfBowlingClub.Classes
                 .Where(p => p.ProductId == productId)
                 .OrderByDescending(p => p.ChangeDate)
                 .ToList();
+        }
+
+        // ============ ПОЛЬЗОВАТЕЛИ (дополнительные методы) ============
+
+        // Получить все роли
+        public List<Roles> GetRoles()
+        {
+            return db.Roles.ToList();
+        }
+
+        // Добавить пользователя
+        public void AddUser(AppData.Users user)
+        {
+            db.Users.Add(user);
+            db.SaveChanges();
+        }
+
+        // Обновить пользователя
+        public void UpdateUser(AppData.Users user)
+        {
+            var old = db.Users.Find(user.Id);
+            if (old != null)
+            {
+                old.LastName = user.LastName;
+                old.FirstName = user.FirstName;
+                old.MiddleName = user.MiddleName;
+                old.Phone = user.Phone;
+                old.Email = user.Email;
+                old.RoleId = user.RoleId;
+                old.Status = user.Status;
+                old.Discount = user.Discount;
+
+                // Обновляем пароль только если он изменен
+                if (!string.IsNullOrEmpty(user.Password) && user.Password != old.Password)
+                {
+                    old.Password = user.Password;
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        // Удалить пользователя
+        public void DeleteUser(int id)
+        {
+            var user = db.Users.Find(id);
+            if (user != null)
+            {
+                // Проверяем, есть ли у пользователя заказы
+                bool hasOrders = db.Orders.Any(o => o.ClientId == id);
+                if (hasOrders)
+                {
+                    throw new Exception("Нельзя удалить пользователя, у которого есть заказы. Сначала удалите заказы или заблокируйте пользователя.");
+                }
+
+                db.Users.Remove(user);
+                db.SaveChanges();
+            }
         }
 
         public void Dispose()

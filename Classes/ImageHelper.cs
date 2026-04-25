@@ -8,36 +8,29 @@ namespace WpfBowlingClub.Classes
     {
         private static string GetImageFolder()
         {
-            string appData = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                "WpfBowlingClub");
-
-            string imgFolder = Path.Combine(appData, "ProductImages");
+            string imgFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ProductImages");
             if (!Directory.Exists(imgFolder))
                 Directory.CreateDirectory(imgFolder);
-
             return imgFolder;
         }
 
-        public static string SaveImage(string sourcePath)
+        public static string SaveImage(string sourcePath, int productId)
         {
-            if (string.IsNullOrEmpty(sourcePath) || !File.Exists(sourcePath))
-                return null;
+            if (string.IsNullOrEmpty(sourcePath)) return null;
 
-            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(sourcePath);
+            string ext = Path.GetExtension(sourcePath);
+            string fileName = $"{productId}_{DateTime.Now.Ticks}{ext}";
             string destPath = Path.Combine(GetImageFolder(), fileName);
-
             File.Copy(sourcePath, destPath, true);
-            return fileName;
+            return $"ProductImages/{fileName}";
         }
 
-        public static BitmapImage LoadImage(string fileName)
+        public static BitmapImage LoadImage(string imagePath)
         {
-            if (string.IsNullOrEmpty(fileName))
+            if (string.IsNullOrEmpty(imagePath))
                 return GetDefaultImage();
 
-            string fullPath = Path.Combine(GetImageFolder(), fileName);
-
+            string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, imagePath);
             if (!File.Exists(fullPath))
                 return GetDefaultImage();
 
@@ -49,14 +42,42 @@ namespace WpfBowlingClub.Classes
             return img;
         }
 
-        private static BitmapImage GetDefaultImage()
+        public static void DeleteImage(string imagePath)
         {
-            var img = new BitmapImage();
-            img.BeginInit();
-            img.UriSource = new Uri("pack://application:,,,/Resources/noimage.png", UriKind.RelativeOrAbsolute);
-            img.CacheOption = BitmapCacheOption.OnLoad;
-            img.EndInit();
-            return img;
+            if (string.IsNullOrEmpty(imagePath)) return;
+            string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, imagePath);
+            if (File.Exists(fullPath))
+                File.Delete(fullPath);
+        }
+
+        // Заглушка - создает серый квадрат 100x100
+        public static BitmapImage GetDefaultImage()
+        {
+            // Сначала пробуем загрузить из файла
+            string defaultPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "noimage.png");
+            if (File.Exists(defaultPath))
+            {
+                var img = new BitmapImage();
+                img.BeginInit();
+                img.UriSource = new Uri(defaultPath);
+                img.CacheOption = BitmapCacheOption.OnLoad;
+                img.EndInit();
+                return img;
+            }
+
+            // Если нет файла, создаем программно
+            return CreateEmptyImage();
+        }
+
+        private static BitmapImage CreateEmptyImage()
+        {
+            // Создаем пустое изображение 100x100
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("pack://application:,,,/Resources/noimage.png", UriKind.RelativeOrAbsolute);
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.EndInit();
+            return bitmap;
         }
     }
 }

@@ -1,52 +1,52 @@
 ﻿<Window x:Class="WpfBowlingClub.Pages.ProductDialogPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Товар" Height="500" Width="450"
-        WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="Товар" Height="635" Width="450"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
 
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <StackPanel Margin="10">
+        <!-- Артикул -->
+        <TextBlock Text="Артикул" FontWeight="Bold" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtArticle" Height="30" Margin="0,0,0,15"/>
 
-        <TextBlock Text="Артикул*" FontWeight="Bold" Margin="0,0,0,5"/>
-        <TextBox x:Name="txtArticle" Grid.Row="1" Height="30" Margin="0,0,0,15"/>
+        <!-- Название -->
+        <TextBlock Text="Название" FontWeight="Bold" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtName" Height="30" Margin="0,0,0,15"/>
 
-        <TextBlock Text="Название*" FontWeight="Bold" Margin="0,32,0,42" Grid.Row="1" Grid.RowSpan="3"/>
-        <TextBox x:Name="txtName" Grid.Row="3" Height="30" Margin="0,7,0,8"/>
+        <!-- Цена -->
+        <TextBlock Text="Цена" FontWeight="Bold" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtPrice" Height="30" Margin="0,0,0,15"/>
 
-        <TextBlock Text="Цена*" FontWeight="Bold" Margin="0,42,0,7" Grid.Row="3" Grid.RowSpan="2"/>
-        <TextBox x:Name="txtPrice" Grid.Row="4" Height="30" Margin="0,5,0,42" Grid.RowSpan="4"/>
+        <!-- Количество -->
+        <TextBlock Text="Количество" FontWeight="Bold" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtQuantity" Height="30" Margin="0,0,0,15" Text="0"/>
 
-        <TextBlock Text="Количество" FontWeight="Bold" Margin="0,11,0,18" Grid.Row="7"/>
-        <TextBox x:Name="txtQuantity" Grid.Row="7" Height="30" Margin="0,28,0,259" Text="0" Grid.RowSpan="6"/>
+        <!-- Поставщик -->
+        <TextBlock Text="Поставщик" FontWeight="Bold" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbSupplier" Height="30" Margin="0,0,0,15"/>
 
-        <TextBlock Text="Поставщик" FontWeight="Bold" Margin="0,19,0,128" Grid.Row="12"/>
-        <ComboBox x:Name="cmbSupplier" Grid.Row="12" Height="30" Margin="0,41,0,195"
-                  DisplayMemberPath="Name" SelectedValuePath="Id"/>
+        <!-- Производитель -->
+        <TextBlock Text="Производитель" FontWeight="Bold" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbManufacturer" Height="30" Margin="0,0,0,15"/>
 
-        <TextBlock Text="Производитель" FontWeight="Bold" Margin="0,78,0,24" Grid.Row="12"/>
-        <ComboBox x:Name="cmbManufacturer" Grid.Row="12" Height="30" Margin="0,99,0,137"
-                  DisplayMemberPath="Name" SelectedValuePath="Id"/>
+        <!-- Картинка (просто показываем путь) -->
+        <TextBlock Text="Путь к картинке" FontWeight="Bold" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtImagePath" Height="30" Margin="0,0,0,15" IsReadOnly="True"/>
 
-        <StackPanel Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Left" Margin="220,208,0,23">
-            <Button x:Name="btnSave" Content="Сохранить" Width="100" Height="35"
-                    Background="#27AE60" Foreground="White" Click="BtnSave_Click" Cursor="Hand" Margin="0,0,10,0"/>
-            <Button x:Name="btnCancel" Content="Отмена" Width="100" Height="35"
-                    Background="#95A5A6" Foreground="White" Click="BtnCancel_Click" Cursor="Hand"/>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+            <Button x:Name="btnLoadImage" Content="Выбрать картинку" Width="120" Height="30"
+                    Click="BtnLoadImage_Click" Margin="0,0,10,0"/>
+            <Button x:Name="btnClearImage" Content="Очистить" Width="100" Height="30"
+                    Click="BtnClearImage_Click"/>
         </StackPanel>
-    </Grid>
+
+        <!-- Кнопки -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button x:Name="btnSave" Content="Сохранить" Width="100" Height="35"
+                    Background="#27AE60" Foreground="White" Click="BtnSave_Click" Margin="0,0,10,0"/>
+            <Button x:Name="btnCancel" Content="Отмена" Width="100" Height="35"
+                    Background="#95A5A6" Foreground="White" Click="BtnCancel_Click"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

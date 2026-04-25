@@ -4,12 +4,54 @@
       Title="Пользователи" Background="#ECF0F1">
 
     <Grid Margin="10">
-        <DataGrid x:Name="dgUsers" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель инструментов -->
+        <Border Grid.Row="0" Background="White" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnAdd" 
+                        Content="➕ Добавить пользователя" 
+                        Width="160" Height="35"
+                        Background="#27AE60" Foreground="White"
+                        Click="BtnAdd_Click"
+                        Cursor="Hand"/>
+
+                <Button x:Name="btnEdit" 
+                        Content="✏️ Редактировать" 
+                        Width="140" Height="35" Margin="10,0"
+                        Background="#3498DB" Foreground="White"
+                        Click="BtnEdit_Click"
+                        Cursor="Hand"/>
+
+                <Button x:Name="btnDelete" 
+                        Content="🗑️ Удалить" 
+                        Width="120" Height="35"
+                        Background="#E74C3C" Foreground="White"
+                        Click="BtnDelete_Click"
+                        Cursor="Hand"/>
+
+                <TextBox x:Name="txtSearch" 
+                         Width="200" Height="35" Margin="20,0,0,0"
+                         TextChanged="TxtSearch_TextChanged"
+                         ToolTip="Поиск по фамилии, имени, email"/>
+                <TextBlock Text="🔍" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Таблица пользователей -->
+        <DataGrid x:Name="dgUsers" Grid.Row="1"
                   AutoGenerateColumns="False"
                   SelectionMode="Single"
+                  SelectionUnit="FullRow"
                   Background="White"
                   RowHeight="35"
-                  FontSize="13">
+                  FontSize="13"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="120"/>
@@ -17,13 +59,13 @@
                 <DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" Width="120"/>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="120"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="180"/>
-                <DataGridTextColumn Header="Роль" 
-                                    Binding="{Binding Role.Name}" 
-                                    Width="100"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Role.Name}" Width="100"/>
                 <DataGridTemplateColumn Header="Статус" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox SelectedValue="{Binding Status}" Width="80" Height="25"
+                            <ComboBox SelectedValue="{Binding Status}" 
+                                      Width="80" 
+                                      Height="25"
                                       SelectionChanged="UserStatusChanged"
                                       Tag="{Binding}">
                                 <ComboBoxItem Content="Активен" Tag="1"/>
@@ -34,5 +76,10 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <!-- Инфо панель -->
+        <Border Grid.Row="2" Background="White" CornerRadius="5" Padding="10" Margin="0,10,0,0">
+            <TextBlock x:Name="lblTotal" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right"/>
+        </Border>
     </Grid>
 </Page>
